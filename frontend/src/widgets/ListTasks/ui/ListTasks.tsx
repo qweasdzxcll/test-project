@@ -1,15 +1,13 @@
-import React from 'react'
 import { Task } from '../../../entities/Task/ui/Task'
 import { ITasks } from '../../../entities/Task'
-import { useGetAllMarksQuery } from '../../CreateMark/model/api/MarksQuery'
+import { useGetAllMarks } from '../../CreateMark/model/api/getAllLabels'
 
-export const ListTasks: React.FC<ITasks> = ({ data }) => {
-  const { data: marksData } = useGetAllMarksQuery()
-  
+export const ListTasks = ({ data, marks }: ITasks) => {
+
   return (
     <>
-      {data && data.tasks && marksData &&
-        data.tasks.map(task => <Task marks={marksData} task={task} key={task.title} />)
+      {data && marks &&
+        data.map(task => <Task marks={marks} task={task} key={task.title} />)
       }
     </>
   )

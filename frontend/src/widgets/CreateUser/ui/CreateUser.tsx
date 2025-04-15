@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useCreateUserMutation } from '../model/api/UserQuery'
 
 
-export const CreateUser: React.FC = () => {
+export const CreateUser = () => {
   
     const [createUser] = useCreateUserMutation()
     

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { useCreateMarkMutation } from '../model/api/MarksQuery'
+import { useCreateMark } from '../model/api/CreateLabel'
 
-export const CreateMark = () => {
+export const CreateMark = ({ refetch }: { refetch: () => void }) => {
 
-    const [createMark] = useCreateMarkMutation()
+    const createMark = useCreateMark()
 
     const [formData, setFormData] = useState({
         caption: '',
@@ -20,7 +20,9 @@ export const CreateMark = () => {
 
     const submitForm = (e: any) => {
         e.preventDefault()
-        createMark(formData)
+        createMark.mutate(formData, {
+            onSuccess: () => refetch()
+        })
     }
 
     return (

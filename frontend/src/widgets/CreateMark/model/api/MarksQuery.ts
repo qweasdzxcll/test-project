@@ -7,10 +7,6 @@ export const marksApi = createApi({
     reducerPath: 'marksApi',
     baseQuery: fetchBaseQuery({
         baseUrl: BASE_URL,
-        prepareHeaders: (headers) => {
-            headers.set('Content-Type', 'application/json');
-            return headers;
-        },
     }),
     tagTypes: ['Mark'],
     endpoints: (builder) => ({
@@ -18,6 +14,9 @@ export const marksApi = createApi({
             query: (data) => ({
                 url: '',
                 method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
                 body: JSON.stringify({
                     query: `
                         mutation CreateMark($object: labels_insert_input!) {

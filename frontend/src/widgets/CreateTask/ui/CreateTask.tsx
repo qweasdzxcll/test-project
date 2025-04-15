@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useCreateTaskMutation } from '../../ListTasks/model/api/TasksQuery';
-import { ICreateTaskProps } from '../';
+import { useCreateTask } from '../../ListTasks/model/api/createTask';
 
-export const CreateTask: React.FC<ICreateTaskProps> = ({ refetch }) => {
-  const [createTask] = useCreateTaskMutation();
+export const CreateTask = ({ refetch }: { refetch: () => void }) => {
+
+  const createTask  = useCreateTask();
   /*
   Проблема с assignee_id
   */
@@ -34,20 +34,19 @@ export const CreateTask: React.FC<ICreateTaskProps> = ({ refetch }) => {
     }
   };
 
-  const submitForm = (e: React.FormEvent) => {
+  const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    createTask(formData)
-      .unwrap()
-      .then(() => {
-        refetch();
+    createTask.mutate(formData, {
+      onSuccess: () => {
+        refetch()
         setFormData({
           title: '',
           description: '',
           label_id: [],
-
         });
-      })
+      }
+    })
   };
   return (
     <>

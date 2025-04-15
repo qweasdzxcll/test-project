@@ -19,22 +19,15 @@ export interface ITask {
 }
 
 export interface ITasks {
-    data: {
-        tasks: ITask[]
-    }
+    data: ITask[]
+    marks: IMark[]
 }
 
 export interface ITaskProps {
     task: ITask
-    marks: {
-        data:{
-            labels: IMark[]
-        }
-    },
+    marks: IMark[]
 }
 
 export interface IAddMarktoTask {
-    data: {
-        labels: IMark[]
-    }
+    labels: IMark[]
 }

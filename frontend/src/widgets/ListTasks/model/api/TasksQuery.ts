@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from '../../../../app/constants';
 import { IAddMarktoTask, ITasks, ITask } from '../../../../entities/Task/model/types/types';
 import { ITaskData } from '../types/types';
+import { useQuery } from '@tanstack/react-query'
 
 /*
   Была проблема с формированием запросов, т.к до этого не работал с такими запросами

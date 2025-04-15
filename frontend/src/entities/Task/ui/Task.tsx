@@ -1,35 +1,37 @@
 import { ITaskProps } from '../'
 import { useState } from 'react'
-import { useAddMarkToTaskMutation, useDeleteTaskLabelMutation } from '../../../widgets/ListTasks/model/api/TasksQuery'
 import { UpdateTask } from '../../../widgets/UpdateTask/ui/UpdateTask'
+import { useDeleteTaskLabel } from '../../../widgets/ListTasks/model/api/DeleteTaskLabel'
+import { useAddMarkToTask } from '../../../widgets/ListTasks/model/api/addMarkToTask'
 
-export const Task: React.FC<ITaskProps> = ({ task, marks }) => {
+export const Task = ({ task, marks }: ITaskProps) => {
 
-    const [deleteTaskLabel] = useDeleteTaskLabelMutation()
+    const deleteTaskLabel = useDeleteTaskLabel()
+
+    const addMarkToTask = useAddMarkToTask()
 
     const [ isOpen, setIsOpen ] = useState(false)
 
     const [ taskState, setTaskState ] = useState(task)
 
     const [activeOption, setActiveOption] = useState('')
-
+    
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setActiveOption(event.target.value)
     }
 
     const labelOnClick = (task_id: number, label_id: number) => {
-        deleteTaskLabel({task_id, label_id})
-        console.log(task_id, label_id)
+        deleteTaskLabel.mutate({task_id, label_id})
         setTaskState(prev => ({
             ...prev,
             task_labels: prev.task_labels.filter(item => item.label.id !== label_id)
-          }));
+          }))
     }
 
     const addLabel = () => {
-        addMarkToTask({ task_id: taskState.assignee_id, label_id: Number(activeOption) });
+        addMarkToTask.mutate({ task_id: taskState.assignee_id, label_id: Number(activeOption) })
     
-        const newLabel = marks.data.labels.find(label => label.id === Number(activeOption));
+        const newLabel = marks.find(label => label.id === Number(activeOption))
     
         if (newLabel) {
             setTaskState((prev: any) => ({
@@ -38,12 +40,10 @@ export const Task: React.FC<ITaskProps> = ({ task, marks }) => {
                     ...prev.task_labels,
                     { label: newLabel }
                 ]
-            }));
+            }))
         }
-    };
-
-    const [addMarkToTask] = useAddMarkToTaskMutation()
-
+    }
+    
     return (
         <>
             <h2>{taskState.title}</h2>
@@ -54,7 +54,7 @@ export const Task: React.FC<ITaskProps> = ({ task, marks }) => {
             <select onChange={handleSelectChange}>
                 <option>Выберите метку</option>
                 {marks &&
-                    marks.data.labels.map(item => <option value={item.id}>{item.caption}</option>)
+                    marks.map(item => <option key={item.id} value={item.id}>{item.caption}</option>)
                 }
             </select>
             <button style={{marginLeft: '15px', cursor: 'pointer'}} onClick={() => addLabel()}>Добавить</button>
