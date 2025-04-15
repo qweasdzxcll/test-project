@@ -1,5 +1,4 @@
 import { RouterProvider } from 'react-router-dom'
-import { Tasks } from '../pages/ListTasks'
 import { router } from './router/router'
 
 function App() {
