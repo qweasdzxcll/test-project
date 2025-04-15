@@ -1,6 +1,5 @@
 import { Task } from '../../../entities/Task/ui/Task'
 import { ITasks } from '../../../entities/Task'
-import { useGetAllMarks } from '../../CreateMark/model/api/getAllLabels'
 
 export const ListTasks = ({ data, marks }: ITasks) => {
 

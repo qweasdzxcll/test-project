@@ -21,7 +21,13 @@ export const CreateMark = ({ refetch }: { refetch: () => void }) => {
     const submitForm = (e: any) => {
         e.preventDefault()
         createMark.mutate(formData, {
-            onSuccess: () => refetch()
+            onSuccess: () => {
+                refetch(),
+                setFormData({
+                    caption: '',
+                    color: ''
+                })
+            }
         })
     }
 

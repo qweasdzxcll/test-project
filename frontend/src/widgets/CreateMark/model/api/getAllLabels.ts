@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { BASE_URL } from '../../../../app/constants'
-import { IAddMarktoTask } from '../../../../entities/Task'
 
 const fetchAllMarks = async () => {
   const response = await axios.post(BASE_URL, {
