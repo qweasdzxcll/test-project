@@ -12,5 +12,8 @@ export const router = createBrowserRouter([
                 element: <Tasks />
             },
         ]
-    }
-])
+    },
+],
+    {
+        basename: "/test-project"
+    })
