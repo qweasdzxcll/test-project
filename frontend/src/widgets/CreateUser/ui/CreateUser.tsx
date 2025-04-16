@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { useCreateUserMutation } from '../model/api/UserQuery'
+import { useCreateUser } from '../model/api/CreateUser'
 
 
 export const CreateUser = () => {
   
-    const [createUser] = useCreateUserMutation()
+    const createUser = useCreateUser()
     
     const [ formData, setFormData ] = useState({
         first_name: '',
@@ -22,7 +22,7 @@ export const CreateUser = () => {
 
     const submitForm = async (e: any) => {
         e.preventDefault()
-        createUser(formData)
+        createUser.mutate(formData)
     }
 
     return (

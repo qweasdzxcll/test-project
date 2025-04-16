@@ -19,7 +19,6 @@ export interface ITask {
 }
 
 export interface ITasks {
-    data: ITask[]
     marks: IMark[]
 }
 

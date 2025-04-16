@@ -1,11 +1,11 @@
 import { useState } from "react"
-import { useUpdateTaskMutation } from "../../ListTasks/model/api/TasksQuery";
+import { useUpdateTask } from "../../ListTasks/model/api/updateTask";
 import { IUpdateTaskProps } from "../model/types/types";
 
 
 export const UpdateTask = ({ id }: IUpdateTaskProps) => {
 
-    const [updateTask] = useUpdateTaskMutation()
+    const updateTask = useUpdateTask()
 
     /*
         Не разобрался в чем проблема, но при обновлении задачи, просто создается новая
@@ -33,7 +33,7 @@ export const UpdateTask = ({ id }: IUpdateTaskProps) => {
 
     const submitForm = (e: React.FormEvent) => {
         e.preventDefault()
-        updateTask(formData)
+        updateTask.mutate(formData)
     }
 
     return (
