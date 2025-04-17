@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useUpdateTask } from "../../ListTasks/model/api/updateTask";
+import { useUpdateTask } from "../../../app/api";
 import { IUpdateTaskProps } from "../model/types/types";
 
 

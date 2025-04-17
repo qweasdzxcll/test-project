@@ -1,10 +1,9 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
-import { BASE_URL } from '../../../../app/constants'
-import { IMark } from '../types/types'
+import { IMark } from '../../widgets/CreateMark/model/types/types';
 
-const createMarkRequest = async (data: Omit<IMark, 'id'>) => {
-  const response = await axios.post(BASE_URL, {
+const createLabelRequest = async (data: Omit<IMark, 'id'>) => {
+  const response = await axios.post(import.meta.env?.VITE_BASE_URL, {
     query: `
       mutation CreateMark($object: labels_insert_input!) {
         insert_labels_one(object: $object) {
@@ -24,8 +23,8 @@ const createMarkRequest = async (data: Omit<IMark, 'id'>) => {
   return response.data.data.insert_labels_one
 }
 
-export const useCreateMark = () => {
+export const useCreateLabel = () => {
   return useMutation<IMark, Error, Omit<IMark, 'id'>>({
-    mutationFn: createMarkRequest,
+    mutationFn: createLabelRequest,
   })
 }

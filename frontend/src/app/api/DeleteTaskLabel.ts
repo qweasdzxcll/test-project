@@ -1,9 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
-import { BASE_URL } from '../../../../app/constants'
 
 const deleteTaskLabelRequest = async ({ task_id, label_id }: { task_id: number; label_id: number }) => {
-  const response = await axios.post(BASE_URL, {
+  const response = await axios.post(import.meta.env?.VITE_BASE_URL, {
     query: `
       mutation RemoveTaskLabel($task_id: Int!, $label_id: Int!) {
         delete_task_labels(

@@ -1,9 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { BASE_URL } from '../../../../app/constants'
 
-const fetchAllMarks = async () => {
-  const response = await axios.post(BASE_URL, {
+const fetchAllLabels = async () => {
+  const response = await axios.post(import.meta.env?.VITE_BASE_URL, {
     query: `
       query {
         labels {
@@ -17,9 +16,9 @@ const fetchAllMarks = async () => {
   return response.data.data.labels
 }
 
-export const useGetAllMarks = () => {
+export const useGetAllLabels = () => {
   return useQuery({
     queryKey: ['marks'],
-    queryFn: fetchAllMarks,
+    queryFn: fetchAllLabels,
   })
 }

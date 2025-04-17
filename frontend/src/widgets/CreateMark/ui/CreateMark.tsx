@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { useCreateMark } from '../model/api/CreateLabel'
+import { useCreateLabel } from '../../../app/api'
 
 export const CreateMark = ({ refetch }: { refetch: () => void }) => {
 
-    const createMark = useCreateMark()
+    const createMark = useCreateLabel()
 
     const [formData, setFormData] = useState({
         caption: '',

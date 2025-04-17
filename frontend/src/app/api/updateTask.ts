@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
-import { BASE_URL } from '../../../../app/constants'
 import { ITask } from '../../../../entities/Task/model/types/types'
 
 const updateTaskRequest = async ({
@@ -10,7 +9,7 @@ const updateTaskRequest = async ({
   id: number
   updates: { title: string; description: string }
 }) => {
-  const response = await axios.post(BASE_URL, {
+  const response = await axios.post(import.meta.env?.VITE_BASE_URL, {
     query: `
       mutation UpdateTask($id: Int!, $updates: tasks_set_input!) {
         update_tasks_by_pk(

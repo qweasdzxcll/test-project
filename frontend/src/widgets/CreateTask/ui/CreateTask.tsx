@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useCreateTask } from '../../ListTasks/model/api/createTask';
+import { useCreateTask } from '../../../app/api';
 
 export const CreateTask = ({ refetch }: { refetch: () => void }) => {
 
@@ -11,6 +11,7 @@ export const CreateTask = ({ refetch }: { refetch: () => void }) => {
     title: '',
     description: '',
     label_id: [] as number[],
+    user: 0
   });
 
   const changeFormData = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,6 +45,7 @@ export const CreateTask = ({ refetch }: { refetch: () => void }) => {
           title: '',
           description: '',
           label_id: [],
+          user: 0
         });
       }
     })
@@ -55,6 +57,7 @@ export const CreateTask = ({ refetch }: { refetch: () => void }) => {
         <input type="text" name='title' value={formData.title} placeholder='title' onChange={changeFormData} />
         <input type="text" name='description' value={formData.description} placeholder='description' onChange={changeFormData} />
         <input type="text" name='label_id' placeholder='Введите желаемые id через запятую' onChange={changeFormData} />
+        <input type="number" name='user' placeholder='User' value={formData.user} onChange={changeFormData} />
         <input type="submit" style={{cursor: 'pointer'}} value="Create" />
       </form>
     </>

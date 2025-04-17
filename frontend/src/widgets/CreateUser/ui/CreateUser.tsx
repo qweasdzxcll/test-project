@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { useCreateUser } from '../model/api/CreateUser'
-
+import { useCreateUser } from '../../../app/api'
 
 export const CreateUser = () => {
   

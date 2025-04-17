@@ -1,9 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { BASE_URL } from '../../../../app/constants'
 
 const fetchAllTasks = async () => {
-  const response = await axios.post(BASE_URL, {
+  const response = await axios.post(import.meta.env?.VITE_BASE_URL, {
     query: `
       query {
         tasks {
@@ -14,6 +13,7 @@ const fetchAllTasks = async () => {
           user {
             first_name
             last_name
+            bio
           }
           task_labels {
             label {
@@ -21,7 +21,7 @@ const fetchAllTasks = async () => {
               caption
               color
             }
-          }
+          },
         }
       }
     `,

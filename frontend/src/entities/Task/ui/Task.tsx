@@ -1,8 +1,7 @@
 import { ITaskProps } from '../'
 import { useState } from 'react'
 import { UpdateTask } from '../../../widgets/UpdateTask/ui/UpdateTask'
-import { useDeleteTaskLabel } from '../../../widgets/ListTasks/model/api/DeleteTaskLabel'
-import { useAddMarkToTask } from '../../../widgets/ListTasks/model/api/addMarkToTask'
+import { useDeleteTaskLabel, useAddMarkToTask } from '../../../app/api'
 
 export const Task = ({ task, marks }: ITaskProps) => {
 
@@ -46,7 +45,7 @@ export const Task = ({ task, marks }: ITaskProps) => {
     
     return (
         <>
-            <h2>{taskState.title}</h2>
+            <h2>{taskState.title} - {taskState.user && taskState.user.last_name} {taskState.user &&  taskState.user.first_name}</h2>
             <p>{taskState.description}</p>
             {
                 taskState.task_labels.map(item => <span style={{ color: 'white', marginRight: '10px', padding: '10px', backgroundColor: item.label.color, borderRadius: '8px', cursor: 'pointer' }} key={item.label.id} onClick={() => labelOnClick(taskState.assignee_id, item.label.id)}>{item.label.caption}</span>)
