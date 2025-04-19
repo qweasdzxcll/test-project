@@ -1,13 +1,13 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
-import { ITask } from '../../../../entities/Task/model/types/types'
+import { ITask } from '../../entities/Task'
 
 const updateTaskRequest = async ({
   id,
   updates,
 }: {
   id: number
-  updates: { title: string; description: string }
+  updates: { title: string; description: string, assignee_id: number }
 }) => {
   const response = await axios.post(import.meta.env?.VITE_BASE_URL, {
     query: `
@@ -19,6 +19,7 @@ const updateTaskRequest = async ({
           id
           title
           description
+          assignee_id
         }
       }
     `,
@@ -27,6 +28,7 @@ const updateTaskRequest = async ({
       updates: {
         title: updates.title,
         description: updates.description,
+        assignee_id: updates.assignee_id
       },
     },
   });
@@ -34,7 +36,7 @@ const updateTaskRequest = async ({
 }
 
 export const useUpdateTask = () => {
-  return useMutation<ITask, Error, { id: number; updates: { title: string; description: string } }>({
+  return useMutation<ITask, Error, { id: number; updates: { title: string; description: string, assignee_id: number } }>({
     mutationFn: updateTaskRequest,
   })
 }

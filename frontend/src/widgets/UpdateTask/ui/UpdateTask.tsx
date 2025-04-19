@@ -1,22 +1,22 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useUpdateTask } from "../../../app/api";
 import { IUpdateTaskProps } from "../model/types/types";
+import { TasksContext } from "../../../app/context/TasksContext";
+import styles from './UpdateTask.module.scss'
 
 
-export const UpdateTask = ({ id }: IUpdateTaskProps) => {
+export const UpdateTask = ({ id, task }: IUpdateTaskProps) => {
 
     const updateTask = useUpdateTask()
 
-    /*
-        Не разобрался в чем проблема, но при обновлении задачи, просто создается новая
-    */
+    const { setTasks } = useContext(TasksContext)
 
     const [formData, setFormData] = useState({
         id: id,
         updates: {
-            title: '',
-            description: '',
-            label_id: [] as number[]
+            title: task.title,
+            description: task.description,
+            assignee_id: task.assignee_id
         }
     })
 
@@ -28,20 +28,23 @@ export const UpdateTask = ({ id }: IUpdateTaskProps) => {
                 ...prev.updates,
                 [name]: value
             }
-        }));
-    };
+        }))
+    }
 
     const submitForm = (e: React.FormEvent) => {
         e.preventDefault()
-        updateTask.mutate(formData)
+        updateTask.mutate(formData, {
+            onSuccess: () => setTasks((prev) => prev.map(item => item.id == id ? { ...item, ...formData.updates } : item))
+        })
     }
 
     return (
         <>
-            <form onSubmit={submitForm} style={{ marginTop: '30px' }} >
+            <form onSubmit={submitForm} className={styles.form} >
                 <input type="text" name='title' value={formData.updates.title} placeholder='title' onChange={changeFormData} />
                 <input type="text" name='description' value={formData.updates.description} placeholder='description' onChange={changeFormData} />
-                <input type="submit" value="Update" />
+                <input type="number" name='assignee_id' placeholder='User' value={formData.updates.assignee_id} onChange={changeFormData} />
+                <input type="submit" style={{ cursor: 'pointer' }} value="Update" />
             </form>
         </>
     )

@@ -7,10 +7,9 @@ import { useState, useMemo } from 'react'
 import { ITask } from '../entities/Task'
 function App() {
 
-  const [tasks, setTasks] = useState<ITask[]>([]);
+  const [tasks, setTasks] = useState<ITask[]>([])
 
-  // Мемоизация значения контекста
-  const contextValue = useMemo(() => ({ tasks, setTasks }), [tasks]);
+  const contextValue = useMemo(() => ({ tasks, setTasks }), [tasks])
 
   return (
     <QueryClientProvider client={client}>

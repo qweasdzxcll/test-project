@@ -6,6 +6,7 @@ const fetchAllTasks = async () => {
     query: `
       query {
         tasks {
+          id
           title
           description
           assignee_id

@@ -3,10 +3,8 @@ import { useCreateTask } from '../../../app/api';
 
 export const CreateTask = ({ refetch }: { refetch: () => void }) => {
 
-  const createTask  = useCreateTask();
-  /*
-  Проблема с assignee_id
-  */
+  const createTask = useCreateTask();
+  
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -22,7 +20,6 @@ export const CreateTask = ({ refetch }: { refetch: () => void }) => {
         .split(',')
         .map(id => parseInt(id.trim(), 10))
         .filter(id => !isNaN(id));
-
       setFormData(prev => ({
         ...prev,
         label_id: idsArray,
@@ -37,7 +34,6 @@ export const CreateTask = ({ refetch }: { refetch: () => void }) => {
 
   const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-
     createTask.mutate(formData, {
       onSuccess: () => {
         refetch()
@@ -52,13 +48,12 @@ export const CreateTask = ({ refetch }: { refetch: () => void }) => {
   };
   return (
     <>
-      <h1>CREATE TASK</h1>
       <form onSubmit={submitForm} >
         <input type="text" name='title' value={formData.title} placeholder='title' onChange={changeFormData} />
         <input type="text" name='description' value={formData.description} placeholder='description' onChange={changeFormData} />
         <input type="text" name='label_id' placeholder='Введите желаемые id через запятую' onChange={changeFormData} />
         <input type="number" name='user' placeholder='User' value={formData.user} onChange={changeFormData} />
-        <input type="submit" style={{cursor: 'pointer'}} value="Create" />
+        <input type="submit" style={{ cursor: 'pointer' }} value="Create" />
       </form>
     </>
   )

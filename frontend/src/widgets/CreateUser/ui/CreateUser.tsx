@@ -26,7 +26,6 @@ export const CreateUser = () => {
 
     return (
         <>
-            <h1>CREATE USER</h1>
             <form onSubmit={submitForm}>
                 <input type="text" name='first_name' value={formData.first_name} placeholder='First name' onChange={changeFormData} />
                 <input type="text" name='last_name' value={formData.last_name} placeholder='Last name' onChange={changeFormData} />

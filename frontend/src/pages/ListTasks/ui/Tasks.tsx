@@ -1,10 +1,11 @@
 import { useContext, useEffect } from 'react'
-import { ListTasks, CreateUser, CreateMark, CreateTask } from '../../../widgets/'
+import { ListTasks, Header } from '../../../widgets/'
 import { useGetAllLabels, useGetAllTasks } from '../../../app/api'
 import { TasksContext } from '../../../app/context/TasksContext'
+import styles from './ListTasks.module.scss'
 
 export const Tasks = () => {
-  const { tasks, setTasks } = useContext(TasksContext)
+  const { setTasks } = useContext(TasksContext)
   const { data, refetch } = useGetAllTasks()
   const { data: marksData, refetch: marksRefetch } = useGetAllLabels()
 
@@ -15,13 +16,11 @@ export const Tasks = () => {
   }, [data])
 
   return (
-    <>
-      <CreateMark refetch={marksRefetch} />
-      <CreateTask refetch={refetch} />
-      <CreateUser />
+    <div className={styles.container}>
+      <Header marksRefetch={marksRefetch} refetch={refetch} />
       {marksData &&
         <ListTasks marks={marksData} />
       }
-    </>
+    </div>
   )
 }

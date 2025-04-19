@@ -8,6 +8,7 @@ export interface ILabel {
 }
 
 export interface ITask {
+    id: number
     title: string
     description: string
     assignee_id: number

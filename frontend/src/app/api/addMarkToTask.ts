@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
-import { IAddMarktoTask } from '../../../../entities/Task/model/types/types'
+import { IAddMarktoTask } from '../../entities/Task';
 
 const addMarkToTaskRequest = async ({ task_id, label_id }: { task_id: number; label_id: number }) => {
   const response = await axios.post(import.meta.env?.VITE_BASE_URL, {

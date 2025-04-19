@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.active {
+    color: blueviolet;
+}
+
+.elems {
+    display: flex;
+    gap: 20px;
+    user-select: none;
+    h2 {
+        cursor: pointer;
+    }
+}
+
+.form {
+    width: 100%;
+    max-width: 1200px;
+    input {
+        margin-right: 10px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 2px solid blueviolet;
+        outline: none;
+        font-size: 16px;
+        font-weight: 700;
+    }
+}

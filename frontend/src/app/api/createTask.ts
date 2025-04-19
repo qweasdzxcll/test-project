@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
-import { ITasks } from '../../../../entities/Task/model/types/types'
-import { ITaskData } from '../types/types'
+import { ITasks } from '../../entities/Task'
+import { ITaskData } from '../../widgets/ListTasks/model/types/types'
 
 const createTaskRequest = async (data: ITaskData) => {
   const taskLabelsData = data.label_id.map((id) => ({ label_id: id }));
@@ -12,19 +12,23 @@ const createTaskRequest = async (data: ITaskData) => {
         $title: String!,
         $description: String,
         $labels: [task_labels_insert_input!]!,
-        $user: users_obj_rel_insert_input!
+        $userId: Int!
       ) {
         insert_tasks_one(object: {
           title: $title,
           description: $description,
           task_labels: { data: $labels },
-          user: $user
+          assignee_id: $userId
         }) {
           id
           title
           description
           assignee_id
-          user
+          user {
+            id
+            first_name
+            last_name
+          }
         }
       }
     `,
@@ -32,11 +36,12 @@ const createTaskRequest = async (data: ITaskData) => {
       title: data.title,
       description: data.description,
       labels: taskLabelsData,
-      user: data.user
+      userId: data.user
     },
   });
-  return response.data.data.insert_tasks_one
-}
+
+  return response.data.data.insert_tasks_one;
+};
 
 export const useCreateTask = () => {
   return useMutation<ITasks, Error, ITaskData>({

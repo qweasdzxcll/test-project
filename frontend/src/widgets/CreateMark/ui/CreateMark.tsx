@@ -33,7 +33,6 @@ export const CreateMark = ({ refetch }: { refetch: () => void }) => {
 
     return (
         <>
-            <h1>CREATE MARK</h1>
             <form onSubmit={submitForm} >
                 <input type="text" name='caption' value={formData.caption} placeholder='caption' onChange={changeFormData} required />
                 <input type="text" name='color' value={formData.color} placeholder='color' onChange={changeFormData} required />
