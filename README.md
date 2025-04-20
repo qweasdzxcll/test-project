@@ -12,9 +12,9 @@ Backend:
 
 ## Структура проекта
 
+```plaintext
 Frontend
 
-```plaintext
 frontend/
 ├── src/
 │   ├── app/
