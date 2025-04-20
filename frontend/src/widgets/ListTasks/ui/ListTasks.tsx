@@ -1,4 +1,4 @@
-import { Task } from '../../../entities/Task/ui/Task'
+import { Task } from '../../../entities/'
 import { ITasks } from '../../../entities/Task'
 import { useContext } from 'react'
 import { TasksContext } from '../../../app/context/TasksContext'
@@ -7,8 +7,6 @@ import styles from './ListTasks.module.scss'
 export const ListTasks = ({ marks }: ITasks) => {
 
   const { tasks } = useContext(TasksContext)
-
-  console.log(tasks)
 
   return (
     <div className={styles.list_tasks}>

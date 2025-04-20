@@ -2,6 +2,7 @@ import { ITaskProps } from '../'
 import { useState } from 'react'
 import { UpdateTask } from '../../../widgets/UpdateTask/ui/UpdateTask'
 import { useDeleteTaskLabel, useAddMarkToTask } from '../../../app/api'
+import { LabelsList, DeleteLabel } from '../../../features'
 import styles from './task.module.scss'
 
 export const Task = ({ task, marks }: ITaskProps) => {
@@ -57,20 +58,11 @@ export const Task = ({ task, marks }: ITaskProps) => {
             {
                 taskState.task_labels.map(item => <span className={styles.label} style={{ backgroundColor: item.label.color }} key={item.label.id} onClick={() => clickLabel(item.label.id, item.label.caption)}>{item.label.caption}</span>)
             }
-            <select onChange={handleSelectChange}>
-                <option>Выберите метку</option>
-                {marks &&
-                    marks.map(item => <option key={item.id} value={item.id}>{item.caption}</option>)
-                }
-            </select>
+            <LabelsList marks={marks} handleSelectChange={handleSelectChange} />
             <button style={{ marginLeft: '15px', cursor: 'pointer' }} onClick={() => addLabel()}>Добавить</button>
             <button style={{ marginLeft: '15px', cursor: 'pointer' }} onClick={() => setIsOpen(!isOpen)} >Update</button>
             {isOpenDelete &&
-                <div className={styles.delete_form}>
-                    <h2>Вы точно хотите удалить {deleteLabel.title}?</h2>
-                    <button style={{marginRight: '20px'}} onClick={() => {setIsOpenDelete(false), confirmDelete()}}>Да</button>
-                    <button onClick={() => setIsOpenDelete(false)}>Нет</button>
-                </div>
+                <DeleteLabel deleteLabel={deleteLabel} setIsOpenDelete={setIsOpenDelete} confirmDelete={confirmDelete} />
             }
             {isOpen &&
                 <UpdateTask id={task.id} task={taskState} />

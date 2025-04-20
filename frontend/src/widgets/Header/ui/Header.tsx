@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { CreateMark, CreateTask, CreateUser, SearchTask } from '../../'
-import { IHeaderProps } from '../model/types/types'
+import { IHeaderProps } from '../'
 import styles from './header.module.scss'
 import classNames from 'classnames'
 

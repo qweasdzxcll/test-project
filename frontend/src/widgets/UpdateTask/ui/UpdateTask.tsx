@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import { useUpdateTask } from "../../../app/api";
-import { IUpdateTaskProps } from "../model/types/types";
+import { IUpdateTaskProps } from "../";
 import { TasksContext } from "../../../app/context/TasksContext";
 import styles from './UpdateTask.module.scss'
 
