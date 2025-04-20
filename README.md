@@ -12,7 +12,7 @@ Backend:
 
 ## Структура проекта
 
-### Frontend
+Frontend
 
 ```plaintext
 frontend/
@@ -42,7 +42,7 @@ frontend/
 │       └── UpdateTask/
 ├── main.tsx
 
-### Backend
+Backend
 
 test-task/
 ├── hasura/
