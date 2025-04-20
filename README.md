@@ -1,46 +1,46 @@
-Описание проекта:
+###Описание проекта:
 Frontend: Frontend-часть проекта реализована на основе фреймворка React с использованием TypeScript.
 Backend: Backend-часть проекта реализована с использованием Hasura , который является GraphQL API сервером на основе PostgreSQL.
 
 
-Структура Frontend:
-    frontend
-        src
-            app
-                api
-                context
-                router
-                store
-                App.tsx
-            entities
-                Task
-                index.ts
-            features
-                DeleteLabel
-                LabelsList
-                index.ts
-            pages
-                ListTasks
-            widgets
-                CreateMark
-                CreateTask
-                CreateUser
-                Header
-                ListTasks
-                SearchTask
-                UpdateTask
-        main.tsx
+###Frontend:
+frontend/
+    ├── src/
+    │ ├── app/
+    │ │ ├── api/
+    │ │ ├── context/
+    │ │ ├── router/
+    │ │ ├── store/
+    │ │ └── App.tsx
+    │ ├── entities/
+    │ │ ├── Task/
+    │ │ └── index.ts
+    │ ├── features/
+    │ │ ├── DeleteLabel/
+    │ │ ├── LabelsList/
+    │ │ └── index.ts
+    │ ├── pages/
+    │ │ └── ListTasks/
+    │ └── widgets/
+    │ ├── CreateMark/
+    │ ├── CreateTask/
+    │ ├── CreateUser/
+    │ ├── Header/
+    │ ├── ListTasks/
+    │ ├── SearchTask/
+    │ └── UpdateTask/
+    ├── main.tsx
 
-Структура Backend:
-    test-task
-        hasura
-            metadata
-            migrations
-            config.yaml
-        docker-compose.yaml
+###Backend:
+test-task/
+    ├── hasura/
+    │ ├── metadata/
+    │ ├── migrations/
+    │ └── config.yaml
+    ├── docker-compose.yaml
 
     
-Для запуска проекта необходимо сделать следующие шаги:
+###Для запуска проекта необходимо сделать следующие шаги:
 1. Убедитесь что у вас установлены следующие инструменты: Git, Node.js, npm, Docker & Docker Compose;
 2. Написать команду git clone https://github.com/qweasdzxcll/test-project.git;
 3. Открыть проект;
