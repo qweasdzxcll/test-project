@@ -12,7 +12,10 @@ export const Task = ({ task, marks }: ITaskProps) => {
     const deleteTaskLabel = useDeleteTaskLabel()
     const addMarkToTask = useAddMarkToTask()
     const [isOpen, setIsOpen] = useState(false)
-    const [taskState, setTaskState] = useState(task)
+    const [taskState, setTaskState] = useState({
+        ...task,
+        task_labels: task.task_labels || []
+      });
     const [activeOption, setActiveOption] = useState('')
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setActiveOption(event.target.value)
