@@ -41,7 +41,7 @@ export const SearchTask = () => {
                 type="text"
                 name="title"
                 id="title"
-                placeholder="Введите текст для поиска"
+                placeholder="Search.."
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />

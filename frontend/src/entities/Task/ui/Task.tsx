@@ -7,15 +7,15 @@ import styles from './task.module.scss'
 
 export const Task = ({ task, marks }: ITaskProps) => {
 
-    const [ isOpenDelete, setIsOpenDelete ] = useState(false)
-    const [ deleteLabel, setDeleteLabel ] = useState({ id: 0, title: '' })
+    const [isOpenDelete, setIsOpenDelete] = useState(false)
+    const [deleteLabel, setDeleteLabel] = useState({ id: 0, title: '' })
     const deleteTaskLabel = useDeleteTaskLabel()
     const addMarkToTask = useAddMarkToTask()
     const [isOpen, setIsOpen] = useState(false)
     const [taskState, setTaskState] = useState({
         ...task,
         task_labels: task.task_labels || []
-      });
+    });
     const [activeOption, setActiveOption] = useState('')
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setActiveOption(event.target.value)
@@ -37,20 +37,23 @@ export const Task = ({ task, marks }: ITaskProps) => {
 
     const clickLabel = (id: number, title: string) => {
         setIsOpenDelete(true)
-        setDeleteLabel({ id, title})
+        setDeleteLabel({ id, title })
     }
 
     const addLabel = () => {
-        addMarkToTask.mutate({ task_id: taskState.id ? taskState.id : 0, label_id: Number(activeOption) })
-        const newLabel = marks.find(label => label.id === Number(activeOption))
-        if (newLabel) {
-            setTaskState((prev: any) => ({
-                ...prev,
-                task_labels: [
-                    ...prev.task_labels,
-                    { label: newLabel }
-                ]
-            }))
+        const findLabel = taskState.task_labels.filter(item => item.label.id == Number(activeOption))
+        if (findLabel.length == 0 && activeOption !== '') {
+            addMarkToTask.mutate({ task_id: taskState.id ? taskState.id : 0, label_id: Number(activeOption) })
+            const newLabel = marks.find(label => label.id === Number(activeOption))
+            if (newLabel) {
+                setTaskState((prev: any) => ({
+                    ...prev,
+                    task_labels: [
+                        ...prev.task_labels,
+                        { label: newLabel }
+                    ]
+                }))
+            }
         }
     }
 

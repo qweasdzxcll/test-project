@@ -5,6 +5,7 @@ import { client } from './store/client'
 import { TasksContext } from './context/TasksContext'
 import { useState, useMemo } from 'react'
 import { ITask } from '../entities/Task'
+import './App.scss'
 function App() {
 
   const [tasks, setTasks] = useState<ITask[]>([])

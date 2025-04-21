@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "./Layout";
-import { Tasks } from "../../pages/ListTasks";
+import { Tasks } from "../../pages/Tasks";
 
 export const router = createBrowserRouter([
     {

@@ -17,6 +17,7 @@ select, button {
     border-radius: 8px;
     outline: none;
     border: 2px solid blueviolet;
+    font-weight: 700;
 }
 
 .label {
@@ -25,4 +26,5 @@ select, button {
     padding: 10px;
     border-radius: 8px;
     cursor: pointer;
+    user-select: none;
 }
