@@ -39,7 +39,8 @@ frontend/
 │       ├── Header/
 │       ├── ListTasks/
 │       ├── SearchTask/
-│       └── UpdateTask/
+│       ├── UpdateTask/
+│       └── index.ts
 ├── main.tsx
 
 Backend
