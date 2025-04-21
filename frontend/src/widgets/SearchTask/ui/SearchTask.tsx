@@ -33,7 +33,7 @@ export const SearchTask = () => {
                 setTasks(normalizedData)
             }
         }
-    }, [data, tasksData, setTasks])
+    }, [data, tasksData])
 
     return (
         <div className={styles.form}>
